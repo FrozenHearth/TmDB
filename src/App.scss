@@ -1,9 +1,18 @@
 @import "./styles/styles";
 
 body {
-  background: $color-gray-900;
+  background: $color-background;
   margin: 0;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  block-size: auto;
 }
