@@ -1,0 +1,18 @@
+@import "./styles";
+
+.tmdb__main {
+  position: relative;
+  top: calc($navbar-height + 48px);
+  padding: 0 16px;
+  &--section {
+    h1 {
+      font-size: $heading-four;
+      margin: 0;
+      color: $color-gray-200;
+    }
+    h2 {
+      font-size: $heading-six;
+      color: $color-white-50;
+    }
+  }
+}
