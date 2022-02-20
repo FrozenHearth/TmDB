@@ -3,6 +3,7 @@
 .tmdb {
   &__navbar {
     display: flex;
+    cursor: pointer;
     align-items: center;
     padding: 24px 16px;
     position: fixed;
