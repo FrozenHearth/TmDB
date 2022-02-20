@@ -1,19 +1,19 @@
-import { SearchBar } from "../components/SearchBar";
+import { Route, Routes } from "react-router-dom";
+import Hero from "../components/Hero";
 import "../styles/mainContent.scss";
+import MovieDetails from "./MovieDetails";
+import Movies from "./Movies";
+import People from "./People";
 
 export const MainContent = () => {
   return (
     <main className="tmdb__main">
-      <section className="tmdb__main--section">
-        <h1>Welcome to TMDB.</h1>
-        <h2>
-          Thousands of English language movies & people to discover. Explore
-          now.
-        </h2>
-      </section>
-      <section className="tmdb__main--section">
-        <SearchBar />
-      </section>
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="people" element={<People />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:id" element={<MovieDetails />} />
+      </Routes>
     </main>
   );
 };
