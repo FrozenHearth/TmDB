@@ -1,0 +1,28 @@
+@import "../styles";
+
+.tmdb__footer {
+  position: fixed;
+  width: 100%;
+  height: $footer-height;
+  justify-content: center;
+  padding: 16px;
+  height: $footer-height;
+  bottom: 0px;
+  background: $color-gray-900-10;
+  backdrop-filter: blur(40px);
+  z-index: 100;
+  display: flex;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: $color-gray-400;
+  gap: 0 8px;
+  li {
+    padding: 12px 16px;
+    margin-bottom: 0;
+    &:hover {
+      cursor: pointer;
+      color: $color-primary-400;
+    }
+  }
+}
