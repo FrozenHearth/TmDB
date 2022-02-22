@@ -1,7 +1,11 @@
 @import "./styles/styles";
 
 body {
-  background: $color-background;
+  background: $color-gray-900;
+  background-image: url("./assets/images/background.avif");
+  background-size: 100%;
+  background-position: 50% -160px;
+  background-repeat: repeat-y;
   margin: 0;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;

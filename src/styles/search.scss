@@ -35,7 +35,7 @@
     overflow-y: auto;
     height: 500px;
     width: 100%;
-    background: $color-black-50;
+    background: $color-black-20;
     border-radius: 4px;
     color: $color-gray-300;
     box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
@@ -48,7 +48,7 @@
         cursor: pointer;
         padding: 16px;
         &:hover {
-          background: $color-gray-800;
+          background: $color-gray-900;
         }
         a {
           margin-right: 8px;
