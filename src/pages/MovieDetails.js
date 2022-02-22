@@ -12,8 +12,7 @@ export default function MovieDetails() {
   const hasData = Boolean(Object.keys(movie).length);
 
   useEffect(() => {
-    console.log("has Data", hasData);
-    if (hasData) {
+    if (hasData && movie.id == params.id) {
       return;
     }
     // Make API call only if no data in store
