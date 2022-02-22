@@ -1,0 +1,25 @@
+@import "../styles";
+
+.card {
+  width: 282px;
+  height: 480px;
+  border-radius: 12px;
+  padding: 12px 8px;
+  background: rgba(32, 40, 62, 0.8);
+  backdrop-filter: blur(80px);
+  margin-bottom: 16px;
+  cursor: pointer;
+  &__img {
+    object-fit: cover;
+    border-radius: inherit;
+  }
+  &__footer {
+    padding: 16px 8px;
+    &--text {
+      font-size: $heading-six;
+      line-height: 24px;
+      letter-spacing: 0.02em;
+      color: $color-gray-50;
+    }
+  }
+}

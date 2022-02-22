@@ -3,6 +3,7 @@
 .tmdb__main {
   position: relative;
   top: calc($navbar-height + 48px);
+  margin-bottom: calc($navbar-height + $footer-height + 96px);
   padding: 0 16px;
   &--section {
     h1 {
@@ -10,9 +11,16 @@
       margin: 0;
       color: $color-gray-200;
     }
-    h2 {
+    p {
       font-size: $heading-six;
       color: $color-white-50;
+    }
+  }
+  &--body {
+    margin-top: 32px;
+    .title {
+      font-size: $heading-five;
+      color: $color-gray-50;
     }
   }
 }
