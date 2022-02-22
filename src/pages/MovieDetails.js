@@ -9,13 +9,16 @@ export default function MovieDetails() {
   const hasErrors = useSelector((state) => state.movie.hasErrors);
   const dispatch = useDispatch();
   const params = useParams();
+  const hasData = Boolean(Object.keys(movie).length);
 
   useEffect(() => {
-    if (!Object.keys(movie).length) {
-      // Make API call only if no data in store
-      dispatch(fetchMovie(params.id));
+    console.log("has Data", hasData);
+    if (hasData) {
+      return;
     }
-  }, []);
+    // Make API call only if no data in store
+    dispatch(fetchMovie(params.id));
+  }, [hasData]);
 
   return (
     <div>

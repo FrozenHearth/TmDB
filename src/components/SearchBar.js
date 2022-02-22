@@ -8,23 +8,25 @@ import { SearchResults } from "./SearchResults";
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState(null);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const getSearch = async () => {
     setLoading(true);
     try {
       const searchResults = await searchAPI(searchTerm);
-      setData(searchResults.results);
+      const englishResults = searchResults.results.filter(
+        (result) => result.original_language === "en"
+      );
+      setData(englishResults);
     } catch (err) {
-      setError(err.status_message || "Unexpected Error!");
+      console.error(err.status_message);
     } finally {
       setLoading(false);
     }
   };
-  const clearSearch = () => {
+  function clearSearch() {
     setSearchTerm("");
-  };
+  }
   useEffect(() => {
     if (searchTerm) {
       getSearch();
@@ -32,9 +34,9 @@ export const SearchBar = () => {
       clearSearch();
     }
   }, [searchTerm]);
-  const handleSearch = (e) => {
+  function handleSearch(e) {
     setSearchTerm(e.target.value);
-  };
+  }
   const debouncedChangeHandler = useMemo(
     () => debounce(handleSearch, 300),
     [searchTerm]
