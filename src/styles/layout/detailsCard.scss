@@ -1,0 +1,24 @@
+@import "../styles";
+
+.details__card {
+  &--banner {
+    height: 320px;
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      border-radius: 40px;
+    }
+  }
+  &--title {
+    position: relative;
+    z-index: 2;
+    background: rgba(18, 24, 41, 0.7);
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: -64px;
+    color: $color-gray-50;
+    backdrop-filter: blur(24px);
+    font-size: 24px;
+  }
+}
