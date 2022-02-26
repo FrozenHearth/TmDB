@@ -1,0 +1,45 @@
+@import "./styles";
+
+.details__body {
+  margin-top: 40px;
+  &--tagline {
+    font-size: 20px;
+    color: $color-gray-50;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  &--overview {
+    color: $color-gray-400;
+    margin-bottom: 24px;
+  }
+  &--labels {
+    margin-bottom: 24px;
+    .genre__wrapper {
+      font-size: 16px;
+      color: $color-gray-100;
+      span {
+        &:not(:first-of-type) {
+          &::before {
+            content: ", ";
+          }
+        }
+      }
+    }
+  }
+  .label {
+    color: $color-gray-400;
+    &__description {
+      color: $color-gray-100;
+      font-size: 20px;
+    }
+  }
+  .footer__poster {
+    height: 720px;
+    img {
+      border-radius: 24px;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
