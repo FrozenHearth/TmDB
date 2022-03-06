@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <>
       <section className="tmdb__main--section">
-        <h1>Welcome to TMDB.</h1>
+        <h1 className="hero-header">Welcome to TMDB.</h1>
         <p className="font-bold">
           Thousands of English language movies & people to discover. Explore
           now.

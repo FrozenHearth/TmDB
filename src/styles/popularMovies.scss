@@ -1,0 +1,28 @@
+@import "../styles/styles";
+
+.flex__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 400px) {
+  .flex__wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .flex__wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+// @media screen and (min-width: 1024px) {
+//   .flex__wrapper {
+//     justify-content: center;
+//   }
+// }
