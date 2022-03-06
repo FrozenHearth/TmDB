@@ -1,8 +1,8 @@
 @import "../styles";
 
 .card {
-  width: 282px;
-  height: 480px;
+  width: 95%;
+  height: 100%;
   border-radius: 12px;
   padding: 12px 8px;
   background: rgba(32, 40, 62, 0.8);
@@ -21,5 +21,38 @@
       letter-spacing: 0.02em;
       color: $color-gray-50;
     }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .card {
+    width: calc(50% - 16px);
+    &__footer {
+      &--text {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        -webkit-line-clamp: 2;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .card {
+    width: calc(33% - 16px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    width: calc(24% - 16px);
+  }
+}
+
+@media screen and (min-width: 1368px) {
+  .card {
+    width: calc(20% - 16px);
   }
 }

@@ -6,10 +6,10 @@
   margin-bottom: calc($navbar-height + $footer-height + 96px);
   padding: 0 16px;
   &--section {
-    h1 {
+    .hero-header {
       font-size: $heading-four;
       margin: 0;
-      color: $color-gray-200;
+      color: $color-gray-50;
     }
     p {
       font-size: $heading-six;
@@ -22,5 +22,12 @@
       font-size: $heading-five;
       color: $color-gray-50;
     }
+  }
+}
+
+@media screen and (min-width: 1368px) {
+  .tmdb__main {
+    max-width: 1368px;
+    margin: 0 auto;
   }
 }
