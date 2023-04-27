@@ -5,7 +5,6 @@ import {
 } from '../actions/movieActions';
 
 function* fetchMovies(action) {
-  console.log('action', action);
   try {
     const response = yield call(
       fetch,
@@ -14,7 +13,6 @@ function* fetchMovies(action) {
       }&query=${action.payload}`
     );
     const data = yield response.json();
-    console.log('data', data);
     yield put(fetchMoviesSuccess(data.results));
   } catch (error) {
     yield put(fetchMoviesFailure(error));

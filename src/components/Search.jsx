@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'tailwind-styled-components';
-import { clearMovies, fetchMovies } from '../redux/actions/movieActions';
+import { fetchMovies } from '../redux/actions/movieActions';
 import Dropdown from './Dropdown';
 
 const SearchIconWrapper = tw.div`
@@ -13,26 +13,36 @@ const SearchIcon = tw.svg`
 `;
 
 const Input = tw.input`
-  block w-full p-4 pl-10 text-base border rounded-lg
-  bg-gray-700 border-gray-600 placeholder-gray-400 text-white 
+  block w-full p-4 pl-10 text-base border rounded-3xl 
+  ${(props) =>
+    props.$hasSubmittedInput
+      ? 'rounded-br-none rounded-bl-none'
+      : 'rounded-br-3xl rounded-bl-3xl'}
+  bg-gray-800 border-gray-600 placeholder-gray-400 text-white 
 `;
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [hasSubmittedInput, setHasSubmittedInput] = useState(false);
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
 
-  console.log('novies', movies);
-
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
-    dispatch(clearMovies());
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    setHasSubmittedInput(true);
+    // Fetch results when form is submitted - i.e. Enter button is pressed
     dispatch(fetchMovies(searchTerm));
   };
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setHasSubmittedInput(false);
+    }
+  }, [searchTerm]);
 
   return (
     <form className="relative" onSubmit={handleFormSubmit}>
@@ -59,8 +69,10 @@ export default function Search() {
           placeholder="Search for a movie..."
           value={searchTerm}
           onChange={handleInputChange}
+          autoComplete="off"
+          $hasSubmittedInput={hasSubmittedInput} // State being passed to tw-styled-components
         />
-        {movies.data.length > 0 && searchTerm !== '' ? (
+        {searchTerm !== '' && hasSubmittedInput ? (
           <Dropdown movies={movies} />
         ) : null}
       </div>

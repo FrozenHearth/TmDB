@@ -5,18 +5,18 @@ const Header = tw.aside`
 sticky top-0 md:top-0 z-40 w-full backdrop-blur flex-none 
         transition-colors duration-500 lg:z-50
         lg:border-slate-900/10 border-slate-50/[0.06] md:flex-shrink-0 
-        md:mx-0 my-6 md:my-0 md:py-4 md:mt-16 px-[2vw] 
-      sm:px-0 md:px-[10vw] 2xl:px-[20vw]
-      supports-backdrop-blur:bg-white/60 bg-transparent
+        md:mx-0 md:my-0 md:py-4 lg:border-b
+      supports-backdrop-blur:bg-white/95 bg-slate-900/75
+      px-[6vw] sm:px-4 md:px-[8vw] 2xl:px-[20vw] py-6
 `;
 
 const Nav = tw.nav`
-block md:flex relative px-4 md:px-0 pb-0 fade scroll-pr-6 items-center
+block md:flex relative  pb-0 fade scroll-pr-6 items-center
 `;
 
 const BrandText = tw.h1`
-text-white items-center flex gap-3 font-bold 
-md:font-bold hover:text-sky-500 hover:cursor-pointer text-xl md:text-3xl
+text-sky-500 items-center flex gap-3 font-bold 
+md:font-boldtext-2xl md:text-3xl
 `;
 
 const NavLinksContainer = tw.div`
