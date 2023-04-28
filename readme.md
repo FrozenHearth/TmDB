@@ -14,5 +14,6 @@ cd tmdb
 pnpm i
 pnpm dev
 ```
+You can then open the app at `http://localhost:5173`
 
-Alternatively, you can do `yarn && yarn dev` OR `npm i && npm run dev`
+Alternatively, you can do `yarn && yarn dev` OR `npm i && npm run dev` if you don't have `pnpm` installed.
