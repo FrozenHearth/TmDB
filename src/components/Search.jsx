@@ -45,7 +45,7 @@ export default function Search() {
   }, [searchTerm]);
 
   return (
-    <form className="relative" onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit}>
       <div className="relative">
         <SearchIconWrapper>
           <SearchIcon
@@ -70,6 +70,7 @@ export default function Search() {
           value={searchTerm}
           onChange={handleInputChange}
           autoComplete="off"
+          aria-label="Search for a movie"
           $hasSubmittedInput={hasSubmittedInput} // State being passed to tw-styled-components
         />
         {searchTerm !== '' && hasSubmittedInput ? (

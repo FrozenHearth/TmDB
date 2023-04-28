@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../redux/actions/popularMoviesActions';
 import tw from 'tailwind-styled-components';
 import { formatDate } from '../utils/formatDate';
-import CardSkeleton from './CardSkeleton';
+import CardSkeleton from './Skeletons/CardSkeleton';
+import { TMDB_IMAGE_URL } from '../utils/constants';
+import FallbackImageForMovies from './Fallbacks/FallbackImageForMovies';
 
 const HeaderText = tw.h1`
 text-white items-center flex gap-3 font-bold 
@@ -35,15 +37,17 @@ text-slate-400 text-xs sm:text-sm mt-6 mb-2 font-semibold line-clamp-3
 
 export default function PopularMovies() {
   const dispatch = useDispatch();
-  const moviesList = useSelector((state) => state.popularMovies);
+  const { loading, popularMovies, error } = useSelector(
+    (state) => state.popularMovies
+  );
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
-  }, []);
+  }, [dispatch]);
 
   let content;
 
-  if (moviesList.loading) {
+  if (loading) {
     content = (
       <CardWrapper>
         {[...Array(9)].map((e, i) => (
@@ -51,22 +55,25 @@ export default function PopularMovies() {
         ))}
       </CardWrapper>
     );
-  } else if (moviesList.popularMovies.length > 0) {
+  } else if (popularMovies.length > 0) {
     content = (
       <CardWrapper>
-        {moviesList.popularMovies
+        {popularMovies
           .filter((movie) => !movie.adult)
           .map((item) => (
             <Card key={item.id}>
               <div className="rounded">
-                <img
-                  src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-                  alt={item.title}
-                  width="300"
-                  height="300"
-                  loading="lazy"
-                  className="object-cover w-full"
-                />
+                {item.backdrop_path ? (
+                  <img
+                    src={`${TMDB_IMAGE_URL}/${item.backdrop_path}`}
+                    alt={item.title}
+                    width="300"
+                    height="300"
+                    className="object-cover w-full"
+                  />
+                ) : (
+                  FallbackImageForMovies()
+                )}
               </div>
               <CardBody>
                 <CardTitle>{item.title}</CardTitle>
@@ -77,16 +84,16 @@ export default function PopularMovies() {
           ))}
       </CardWrapper>
     );
-  } else if (moviesList.error) {
+  } else if (error) {
     content = <span>Error</span>;
   } else {
     content = <span>No results found...</span>;
   }
 
   return (
-    <div>
+    <>
       <HeaderText>Popular Movies</HeaderText>
       {content}
-    </div>
+    </>
   );
 }

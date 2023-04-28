@@ -8,7 +8,7 @@ const SkeletonImageWrapper = tw.div`
 flex items-center justify-center h-52 mb-4 rounded bg-gray-700
 `;
 
-const SkeletonImage = tw.image`
+const SkeletonImage = tw.svg`
 w-12 h-12 text-gray-600
 `;
 
