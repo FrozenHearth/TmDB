@@ -3,12 +3,13 @@ import {
   fetchPopularMoviesFailure,
   fetchPopularMoviesSuccess,
 } from '../actions/popularMoviesActions';
+import { TMDB_BASE_URL } from '../../utils/constants';
 
 function* fetchPopularMovies() {
   try {
     const response = yield call(
       fetch,
-      `https://api.themoviedb.org/3/movie/popular?api_key=${
+      `${TMDB_BASE_URL}/movie/popular?api_key=${
         import.meta.env.VITE_TMDB_API_KEY
       }`
     );

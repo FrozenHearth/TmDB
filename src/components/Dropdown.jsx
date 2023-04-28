@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import tw from 'tailwind-styled-components';
+import { TMDB_IMAGE_URL } from '../utils/constants';
+import FallbackAvatarDropdown from './Fallbacks/FallbackAvatarDropdown';
 
 const ListWrapper = tw.div`
   w-full
@@ -36,14 +38,9 @@ const NoResultsFound = tw.div`
   justify-center
 `;
 
-const Loading = tw.div`
-  text-slate-400
-  py-4
-  flex
-  gap-4
-  items-center
-  justify-center
-`;
+const Loading = tw(NoResultsFound)``;
+
+const Error = tw(NoResultsFound)``;
 
 const ListItemAvatar = tw.img`
   object-cover
@@ -56,36 +53,41 @@ text-base
 `;
 
 export default function Dropdown({ movies }) {
+  const { loading, data, error } = movies;
   let content;
-  if (movies.loading) {
+  if (loading) {
     content = (
       <Loading>
         <span>Loading...</span>
       </Loading>
     );
-  } else if (movies.data.length > 0) {
+  } else if (data.length > 0) {
     content = (
       <ul>
-        {movies.data.map((movie) => (
+        {data.map((movie) => (
           <ListItem key={movie.id}>
             <div>
-              <ListItemAvatar
-                src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
-                width="36"
-                height="36"
-              />
+              {movie.poster_path ? (
+                <ListItemAvatar
+                  src={`${TMDB_IMAGE_URL}/${movie.poster_path}`}
+                  alt={movie.title}
+                  width="36"
+                  height="36"
+                />
+              ) : (
+                FallbackAvatarDropdown()
+              )}
             </div>
             <ListItemText>{movie.title}</ListItemText>
           </ListItem>
         ))}
       </ul>
     );
-  } else if (movies.error) {
+  } else if (error) {
     content = (
-      <NoResultsFound>
-        <span>Error: {movies.error.message}</span>
-      </NoResultsFound>
+      <Error>
+        <span>Error: {error.message}</span>
+      </Error>
     );
   } else {
     content = (
