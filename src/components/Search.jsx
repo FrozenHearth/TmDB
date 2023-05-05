@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'tailwind-styled-components';
 import { fetchMovies } from '../redux/actions/movieActions';
-import Dropdown from './Dropdown';
+
+const Dropdown = lazy(() => import('./Dropdown'));
 
 const SearchIconWrapper = tw.div`
   absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none
@@ -19,6 +20,15 @@ const Input = tw.input`
       ? 'rounded-br-none rounded-bl-none'
       : 'rounded-br-3xl rounded-bl-3xl'}
   bg-gray-800 border-gray-600 placeholder-gray-400 text-white 
+`;
+
+const Loading = tw.div`
+text-slate-400
+py-4
+flex
+gap-4
+items-center
+justify-center
 `;
 
 export default function Search() {
@@ -74,7 +84,15 @@ export default function Search() {
           $hasSubmittedInput={hasSubmittedInput} // State being passed to tw-styled-components
         />
         {searchTerm !== '' && hasSubmittedInput ? (
-          <Dropdown movies={movies} />
+          <Suspense
+            fallback={
+              <Loading>
+                <span>Loading...</span>
+              </Loading>
+            }
+          >
+            <Dropdown movies={movies} />
+          </Suspense>
         ) : null}
       </div>
     </form>

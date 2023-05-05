@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../redux/actions/popularMoviesActions';
 import tw from 'tailwind-styled-components';
 import { formatDate } from '../utils/formatDate';
 import CardSkeleton from './Skeletons/CardSkeleton';
 import { TMDB_IMAGE_URL } from '../utils/constants';
-import FallbackImageForMovies from './Fallbacks/FallbackImageForMovies';
 
 const HeaderText = tw.h1`
 text-white items-center flex gap-3 font-bold 
@@ -34,6 +33,19 @@ text-slate-300 text-sm sm:text-base my-2 font-semibold
 const CardDescription = tw.p`
 text-slate-400 text-xs sm:text-sm mt-6 mb-2 font-semibold line-clamp-3
 `;
+
+const Loading = tw.div`
+text-slate-400
+py-4
+flex
+gap-4
+items-center
+justify-center
+`;
+
+const LazyFallbackImageForMovies = lazy(() =>
+  import('./Fallbacks/FallbackImageForMovies')
+);
 
 export default function PopularMovies() {
   const dispatch = useDispatch();
@@ -72,7 +84,15 @@ export default function PopularMovies() {
                     className="object-cover w-full"
                   />
                 ) : (
-                  FallbackImageForMovies()
+                  <Suspense
+                    fallback={
+                      <Loading>
+                        <span>Loading...</span>
+                      </Loading>
+                    }
+                  >
+                    <LazyFallbackImageForMovies />
+                  </Suspense>
                 )}
               </div>
               <CardBody>
